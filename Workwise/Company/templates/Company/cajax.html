@@ -1,0 +1,94 @@
+
+<script>
+
+$(".proj_comm").on('click',function(){
+    let id = $(this).attr('data-sid')
+    let ask = "#ask"+$(this).attr('data-sid')
+
+    data={
+        id:id,
+        ask:ask,
+    }
+
+    $.ajax(
+        {
+            url: "{% url 'proj-com' %}",
+            method: "POST",
+            data:data,
+
+            success: function(response)
+            {
+                console.log('success')
+                seek = response.seek
+                pro = response.pro
+                ask = response.ask
+                var my
+                if(pro.length!==0)
+                {
+                   
+                    for(i=0;i<pro.length;i++)
+                    {
+                        first = seek[i].charAt(0) 
+                        // console.log('if.......')
+                        my+='<div class="div"><div class="flex"><div class="box" ><span class="mg">'+first+'</span> </div><div class="username" >'+seek[i]+'</div></div><div class="comment" >'+pro[i]+'</div></div>'
+
+                    }
+                }
+                else{
+                    // console.log('else.....')
+                    my+='<div class="div"><div class="flex"><div class="username" ></div></div><div class="comment" >No comments</div></div>'
+                     
+
+                }
+                $(ask).html(my);
+            }
+        }
+    )
+})
+
+
+$(".job_comm").on('click',function(){
+    let id = $(this).attr('data-sid')
+    let ask = "#ask"+$(this).attr('data-sid')
+
+    data={
+        'id':id,
+        'ask':ask,
+    }
+
+    $.ajax(
+        {
+            url: "{% url 'job-com' %}",
+            method: "POST",
+            data:data,
+
+            success: function(response)
+            {
+                console.log('success')
+                ask = response.ask
+                j_comm = response.j_comm
+                seek = response.seek
+                console.log(j_comm)
+                var my
+
+                if(j_comm.length!==0)
+                {
+                    console.log('if')
+                    for(i=0;i<j_comm.length;i++)
+                    {
+                        first = seek[i].charAt(0) 
+                        my+='<div class="div"><div class="flex"><div class="box" ><span class="mg">'+first+'</span> </div><div class="username" >'+seek[i]+'</div></div><div class="comment" >'+j_comm[i].value+'</div></div>'
+                    }
+                }
+                else{
+                    console.log('else.....')
+                    my+='<div class="div"><div class="flex"><div class="username" ></div></div><div class="comment" >No comments</div></div>'
+
+                }
+                $(ask).html(my)
+            }
+        }
+    )
+})
+
+</script>

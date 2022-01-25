@@ -1,0 +1,47 @@
+{% extends 'Seeker/s-index.html' %}
+{% load static %}
+
+{% block content %}
+
+		<section class="companies-info">
+			<div class="container">
+				<div class="company-title">
+					<h3>All Companies</h3>
+				</div><!--company-title end-->
+				<div class="companies-list">
+					<div class="row">
+						{% for i in context.c_all %}
+						<div class="col-lg-3 col-md-4 col-sm-6">
+							<div class="company_profile_info">
+								<div class="company-up-info">
+									<img src="{{i.c_pic.url}}" height="90" width="90" alt="">
+									<h3>{{i.cname}}</h3>
+									<h4>{{i.city}}</h4>
+									<ul>
+										{% if i.id in context.s_follow %}
+											<li class="cfollow follow" data-sid="{{i.id}}"><a  title="Follow" id="myfollow{{i.id}}" >Following</a></li>
+										{% else %}
+											<li class="cfollow follow" data-sid="{{i.id}}"><a  title="Follow" id="myfollow{{i.id}}" >Follow</a></li>
+
+										{% endif %}
+										<li><a title="" class="message-us"><i class="fa fa-envelope"></i></a></li>
+									</ul>
+								</div>
+								<a href="#" title="" class="view-more-pro">View Profile</a>
+							</div><!--company_profile_info end-->
+						</div>
+						{% endfor %}
+						
+					</div>
+				</div><!--companies-list end-->
+				<!-- <div class="process-comm">
+					<div class="spinner">
+						<div class="bounce1"></div>
+						<div class="bounce2"></div>
+						<div class="bounce3"></div>
+					</div>
+				</div>process-comm end -->
+			</div>
+		</section><!--companies-info end-->
+
+{% endblock %}

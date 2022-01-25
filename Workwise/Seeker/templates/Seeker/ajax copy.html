@@ -1,0 +1,454 @@
+<script>
+
+$(".psave").on('click',function(){
+    // console.log("ajax");
+    //$("li.i la-bookmark").removeClass("la la-bookmark").addClass("la la-adjust");
+    let id = $(this).attr('data-pid' );
+    let iddata =  "#mydata"+$(this).attr('data-pid');
+    // document.getElementById(iddata.innerhtml)
+    // console.log('id',iddata)
+    
+    // if ($(iddata).hasClass('la la-check-circle')) {  
+    //     $(iddata).removeClass("la la-check-circle").addClass("la la-bookmark");
+    //     console.log('if.................')
+    // } 
+
+    // console.log("-----> S-P ");
+
+    // console.log("-----> btn del clicked ",id);
+
+    data = {
+        id : id,
+        iddata: iddata
+    }
+
+    $.ajax(
+        {
+            url : "{% url 'saveproject' %}",
+            method: "POST",
+            data : data,
+
+            success: function(response)
+            {
+               
+                iddata = response.iddata
+                a = response.a
+                // console.log('id',a)
+                if(a===1)
+                { 
+                    $(iddata).html("<i class='la la-bookmark'></i>")
+                }
+                else{
+                    $(iddata).html("<i class='la la-check-circle'></i>")
+                }
+                // console.log('---------')
+            }
+        }
+    ) 
+    
+})
+
+$(".psaved").on('click',function(){
+    console.log('psaved')
+    let id = $(this).attr('data-pid')
+    let mydata = "#mydata"+$(this).attr('data-pid')
+
+    data = {
+        id :id,
+        mydata : mydata,
+    }
+
+    $.ajax(
+        {
+            url : "{% url 'savedproject' %}",
+            method: "POST",
+            data : data,
+
+            success: function(response)
+            {
+                console.log('------saved')
+                mydata = response.mydata
+                a = response.a
+                console.log('my',mydata)
+                console.log(a)
+                if(a===1)
+                {
+                    $(mydata).html("<i class='la la-bookmark'></i>")
+                }       
+                else
+                {
+                    $(mydata).html("<i class='la la-check-circle'></i>")
+                }
+            }
+        }
+    )
+})
+
+$(".jsave").on('click',function(){
+    // console.log("ajax");
+    //$("li.i la-bookmark").removeClass("la la-bookmark").addClass("la la-adjust");
+    let id = $(this).attr('data-pid' );
+    let mydata = "#mydata"+$(this).attr('data-pid');
+   
+    
+
+    // console.log("-----> classs field ");
+
+    // console.log("-----> btn del clicked ",id);
+
+    data = {
+        id : id,
+        mydata: mydata
+    }
+
+    $.ajax(
+        {
+            url : "{% url 'savejob' %}",
+            method: "POST",
+            data : data,
+
+            success: function(response)
+            {
+                mydata = response.mydata
+                a = response.a
+
+                if(a===1)
+                {
+                    $(mydata).html("<i class='la la-bookmark'></i>")
+                }
+                else
+                {
+                    $(mydata).html("<i class='la la-check-circle'></i>")
+                }
+
+            }
+        }
+    )
+    
+})
+
+
+$(".jsaved").on('click', function(){
+    console.log('---saved')
+    let id = $(this).attr('data-pid')
+    let mydata = "#mydata"+$(this).attr('data-pid')
+    // console.log(id)
+    // console.log(mydata)
+    data = {
+        id :id,
+        mydata : mydata
+    }
+
+    $.ajax(
+        {
+            url: "{% url 'savedjob' %}",
+            method: "POST",
+            data : data,
+
+            success : function(response)
+            {
+                mydata = response.mydata
+                a = response.a
+
+                if(a===1)
+                {
+                    $(mydata).html("<i class='la la-bookmark'></i>")
+                }
+                else
+                {
+                    $(mydata).html("<i class='la la-check-circle'></i>")
+                }
+            }
+        }
+    )
+})
+
+
+$('.plike').on('click',function(){
+    let id = $(this).attr('data-sid')
+    let mylike = "#mylike"+$(this).attr('data-sid')
+    // $(mylike).addClass("active")
+    // console.log(id)
+    // console.log(mylike)
+    data = {
+        id:id,
+        mylike:mylike,
+    }
+
+    $.ajax(
+        {
+            url : "{% url 'projectlike' %}",
+            method: "POST",
+            data : data,
+
+            success: function(response)
+            {
+                console.log('success')
+                a= response.a
+                mylike = response.mylike
+
+                if(a===1)
+                {
+                    $(mylike).removeClass("active")
+                }
+                else
+                {
+                    $(mylike).addClass("active")
+                }
+            }
+        }
+    )
+})
+
+$(".pslike").on('click',function(){
+    let id = $(this).attr('data-sid')
+    let mydata = "mydata"+$(this).attr('data-sid')
+
+    data={
+        id:id,
+        mydata:mydata,
+    }
+    $.ajax(
+        {
+            url:"{% url 'pslike' %}",
+            method:"POST",
+            data:data,
+
+            success: function(response)
+            {
+                console.log('success')
+                a=response.a
+                mydata=response.mydata
+                
+                if(a===1)
+                {
+                    $(mydata).removeClass("active")
+                }
+                else
+                {
+                    $(mydata).addClass("active")
+                }
+            }
+        }
+    )
+})
+
+$(".japp").on('click',function(){
+    $(this).text('Applied')
+
+    let id = $(this).attr('data-pid')
+    let mydata = "#mydata"+$(this).attr('data-pid')
+    console.log(id)
+    console.log(mydata)
+
+    data={
+        id:id,
+        mydata:mydata
+    }
+
+    $.ajax(
+        {
+            url : "{% url 'apply-jobs' %}",
+            method: "POST",
+            data:data,
+
+            success: function(response)
+            {
+                // console.log('successs')
+                a=response.a
+                mydata = response.mydata
+                console.log(mydata)
+                // if(a==1)
+                // {
+                //     console.log('========')
+                //     mydata.innerHTML="Applied"
+                // }
+               
+                // const element = document.getElementById(mydata);
+                // element.innerHTML = "New Heading";
+                // console.log('ele4',element)
+                // document.getElementById(mydata).innerHTML = "New text!";
+
+            }
+        }
+    )
+})
+
+
+$(".bid").on('click',function(){
+    $(this).text('Applied')
+
+    let id = $(this).attr('data-pid')
+    let mydata = "mydata"+$(this).attr('data-pid')
+
+    data={
+        id:id,
+        mydata:mydata
+    }
+
+    $.ajax(
+        {
+            url : "{% url 'bid-project' %}",
+            method: "POST",
+            data:data,
+
+            success: function(response)
+            {
+                // console.log('successs')
+
+            }
+        }
+    )
+}) 
+
+
+$(".jlike").on('click',function(){
+  
+    let id = $(this).attr('data-sid')
+    let mydata = "mydata"+$(this).attr('data-sid')
+
+    data={
+        id:id,
+        mydata:mydata,
+    }
+
+    $.ajax(
+        {
+            url: "{% url 'joblike' %}",
+            method: "POST",
+            data: data,
+
+            success: function(response)
+            {
+                console.log('success')
+                a=response.a
+                mydata=response.mydata
+
+                if(a===1)
+                {
+                    $(mydata).removeClass("active")
+                }
+                else
+                {
+                    $(mydata).addClass("active")
+                }
+                console.log('success')
+
+            }
+        }
+    )
+})
+
+$(".jslike").on('click',function(){
+    let id = $(this).attr('data-sid')
+    let mylike = "mylike"+$(this).attr('data-sid')
+    
+    data={
+        id:id,
+        mylike:mylike,
+    }
+
+    $.ajax(
+        {
+            url: "{% url 'js-like' %}",
+            method: "POST",
+            data:data,
+
+            success: function(response)
+            {
+                console.log('=======')
+                a = response.a
+                mylike = response.mylike
+
+                console.log('-----')
+            }
+        }
+    )
+})
+
+
+$(".proj_comm").on('click',function(){
+    let id = $(this).attr('data-sid')
+    let mycom = "mycom"+$(this).attr('data-sid')
+    console.log(id)
+    console.log(mycom)
+
+    data={
+        id:id,
+        mycom:mycom,
+    }
+
+    $.ajax(
+        {
+            url: "{% url 'p-comment' %}",
+            method: "POST",
+            data:data,
+
+            success: function(response)
+            {
+                console.log('===========')
+                var my
+                pro = response.pro
+                seek = response.seek
+                console.log(pro)
+                console.log(seek)
+
+                for(i=0;i<pro.length;i++)
+                {
+                    
+                    
+                    console.log('*')
+                    my+='<div class="flex" ><div class="box" ><img src="" alt="" class="box"></div><div class="username" >'+seek[i]+'</div></div><div class="comment" >'+pro[i]+'</div>'
+
+                }
+                $("#cbox").html(my);
+
+            }
+        }
+    )
+     
+})
+
+// =============================
+
+$(".cfollow").on('click',function(){
+    // $(this).text('Following')
+
+    let id = $(this).attr('data-sid')
+    let myfollow = "myfollow"+$(this).attr('data-sid')
+    console.log(id)
+    console.log(myfollow)
+
+    data={
+        id:id,
+        myfollow:myfollow
+    }
+
+    $.ajax(
+        {
+            url: "{% url 'c-follow' %}",
+            method: "POST",
+            data: data,
+
+            success: function(response)
+            {
+                console.log('succes')
+                status=response.status
+                mydata=response.mydata
+                console.log(status)
+                console.log(myfollow)
+
+                if(status==="true")
+                {
+                    $(mydata).innerHTML="Following"
+                }
+                else
+                {
+
+                }
+            }
+        }
+    )
+})
+</script>
+

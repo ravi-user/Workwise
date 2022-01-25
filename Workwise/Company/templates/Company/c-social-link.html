@@ -1,0 +1,96 @@
+{% extends 'Company/index.html' %}
+
+{% block content %} 
+
+<section class="profile-account-setting">
+    <div class="container">
+        <div class="account-tabs-setting">
+            <div class="row">
+                <div class="col-lg-3">
+                    <div class="acc-leftbar">
+                        <div class="nav nav-tabs" id="nav-tab" role="tablist"> 
+                            <a class="nav-item nav-link active" id="nav-acc-tab" data-toggle="tab" href="#nav-acc" role="tab" aria-controls="nav-acc" aria-selected="true"><i class="far fa-external-link"></i>Add Links</a>
+                            <a class="nav-item nav-link" id="nav-status-tab" data-toggle="tab" href="#nav-status" role="tab" aria-controls="nav-status" aria-selected="false"><i class="fas fa-trash-alt"></i>Remove Links</a>
+                            
+                          </div>
+                    </div><!--acc-leftbar end-->
+                </div>
+                <div class="col-lg-9">
+                    <div class="tab-content" id="nav-tabContent">
+                        <div class="tab-pane fade show active" id="nav-acc" role="tabpanel" aria-labelledby="nav-acc-tab">
+                            <div class="acc-setting">
+                                <h3>Add Social Media Links</h3>
+                                <form action="{% url 'c-add-link' %}" method="POST">
+                                    {% csrf_token %}
+                                    <div class="cp-field">
+                                        <h5><i class="fa fa-facebook-square"></i> FaceBook</h5>
+                                        <div class="cpp-fiel">
+                                            <input type="text" name="facebook" placeholder="Add Facebook Account Link">
+                                            <i class="fa fa-lock"></i>
+                                        </div>
+                                    </div>
+                                    <div class="cp-field">
+                                        <h5><i class="fa fa-twitter"></i> Twitter</h5>
+                                        <div class="cpp-fiel">
+                                            <input type="text" name="twitter" placeholder="Add Twitter Account Link">
+                                            <i class="fa fa-lock"></i>
+                                        </div>
+                                    </div>
+                                    <div class="cp-field">
+                                        <h5><i class="fa fa-pinterest"></i> Pinterest</h5>
+                                        <div class="cpp-fiel">
+                                            <input type="text" name="pinterest" placeholder="Add Pinterest Account Link">
+                                            <i class="fa fa-lock"></i>
+                                        </div>
+                                    </div>
+                                    <div class="cp-field">
+                                        <h5><i class="fa fa-instagram"></i> Instagram</h5>
+                                        <div class="cpp-fiel">
+                                            <input type="text" name="instagram" placeholder="Add Instagram Account Link">
+                                            <i class="fa fa-lock"></i>
+                                        </div>
+                                    </div>
+                                    <div class="cp-field">
+                                        <h5><i class="fa fa-youtube"></i> YouTube</h5>
+                                        <div class="cpp-fiel">
+                                            <input type="text" name="youtube" placeholder="Add YouTube Account Link">
+                                            <i class="fa fa-lock"></i>
+                                        </div>
+                                    </div>
+                                     
+                                    <div class="save-stngs pd2">
+                                        <ul>
+                                            <li><button type="submit">Save </button></li>
+                                        </ul>
+                                    </div><!--save-stngs end-->
+                                </form>
+                            </div><!--acc-setting end-->
+                        </div>
+
+                          <div class="tab-pane fade" id="nav-status" role="tabpanel" aria-labelledby="nav-status-tab">
+                              <div class="acc-setting">
+                                  <h3>Remove Links</h3>
+                                  <div class="profile-bx-details">
+                                      <div class="row">
+                                          
+                                        <h5><i class="fa fa-youtube"></i> YouTube</h5>
+                                        <br>
+                                        <h5><i class="fa fa-facebook"></i>FaceBook</h5>
+                                      </div>
+                                  </div><!--profile-bx-details end-->
+                                  <div class="pro-work-status">
+                                      <!-- <h4>Work Status  -  Last Months Working Status</h4> -->
+                                  </div><!--pro-work-status end-->
+                              </div><!--acc-setting end-->
+                          </div>
+          
+                           
+                    </div>
+                </div>
+            </div>
+        </div><!--account-tabs-setting end-->
+    </div>
+</section>
+
+
+{% endblock %}

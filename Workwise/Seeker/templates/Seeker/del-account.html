@@ -1,0 +1,41 @@
+{% extends 'Seeker/s-index.html' %}
+
+{% block content %} 
+
+<section class="profile-account-setting">
+    <div class="container">
+        <div class="account-tabs-setting">
+            <div class="acc-setting">
+                <h3>Deactivate Account</h3>
+                {%if context.msg%}
+                {{context.msg}}
+                {% endif %}
+                <form action="{% url 'del-account' %}" method="post">
+                    <div class="cp-field">
+                        <h5>Email</h5>
+                        <div class="cpp-fiel">
+                            <input type="text" name="email" placeholder="Email">
+                            <i class="fa fa-envelope"></i>
+                        </div>
+                    </div>
+                    <div class="cp-field">
+                        <h5>Password</h5>
+                        <div class="cpp-fiel">
+                            <input type="password" name="password" placeholder="Password">
+                            <i class="fa fa-lock"></i>
+                        </div>
+                    </div>
+                     
+                    <div class="save-stngs pd3">
+                        <ul>
+                            <li><button type="submit">Delete Account</button></li>
+                        </ul>
+                    </div><!--save-stngs end-->
+                </form>
+            </div><!--acc-setting end-->
+        </div><!--account-tabs-setting end-->
+    </div>
+</section>
+
+
+{% endblock %}

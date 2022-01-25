@@ -1,0 +1,237 @@
+
+
+{% extends 'Seeker/s-index.html' %}
+	{% load static %}
+	{% block content %}
+		<main>
+			<div class="main-section">
+				<div class="container">
+					<div class="main-section-data">
+						<div class="row">
+							<div class="col-lg-3">
+								<div class="main-left-sidebar">
+									<div class="user_profile">
+										<div class="user-pro-img">
+											<img src="{{context.sid.s_pic.url}}" height="170" width="220" alt="">
+										</div><!--user-pro-img end-->
+										<div class="user_pro_status">
+											<!-- <ul class="flw-hr">
+												<li><a href="#" title="" class="flww"><i class="la la-plus"></i> Follow</a></li>
+											</ul> -->
+											<ul class="flw-status">
+												<li>
+													<span>Following</span>
+													<b>{{context.s_follow}}</b>
+												</li>
+												 
+											</ul>
+										</div><!--user_pro_status end-->
+										<ul class="social_links">
+											<!-- <li><a href="#" title=""><i class="la la-globe"></i> www.example.com</a></li> -->
+											{% if context.all_link.facebook %}
+											<li><a href="#" title=""><i class="fa fa-facebook-square"></i> {{context.all_link.facebook}}</a></li>
+											{%endif%}
+											{% if context.all_link.twitter %}
+											<li><a href="#" title=""><i class="fa fa-twitter"></i> {{context.all_link.twitter}}</a></li>
+											{%endif%}
+											{% if context.all_link.pinterest %}
+											<li><a href="#" title=""><i class="fa fa-pinterest"></i> {{context.all_link.pinterest}}</a></li>
+											{%endif%}
+											{% if context.all_link.instagram %}
+											<li><a href="#" title=""><i class="fa fa-instagram"></i> {{context.all_link.instagram}}</a></li>
+											{%endif%}
+											{% if context.all_link.youtube %}
+											<li><a href="#" title=""><i class="fa fa-youtube"></i> {{context.all_link.youtube}}</a></li>
+											{%endif%}
+										</ul>
+									</div><!--user_profile end-->
+								</div><!--main-left-sidebar end-->
+							</div>
+							<div class="col-lg-6">
+								<div class="main-ws-sec">
+									<div class="user-tab-sec">
+										<h3>{{context.sid.sname}}</h3>
+										<br>
+										 <!--star-descp end-->
+										<div class="tab-feed">
+											<ul>
+												<li data-tab="info-dd"  class="active">
+													<a href="#" title="">
+														<img src="{% static 'Company/assets/images/ic2.png' %}" alt="">
+														<span>Info</span>
+													</a>
+												</li>
+												<li data-tab="my-bids">
+													<a href="#" title="">
+														<img src="images/ic5.png" alt="">
+														<span>My Bids</span>
+													</a>
+												</li>
+												<li data-tab="portfolio-dd">
+													<a href="#" title="">
+														<img src="{% static 'Company/assets/images/ic2.png' %}" alt="">
+														<span>Settings</span>
+													</a>
+												</li>
+											</ul>
+										</div><!-- tab-feed end-->
+									</div><!--user-tab-sec end-->
+									
+
+									<div class="product-feed-tab current" id="info-dd">
+										
+										<div class="user-profile-ov">
+											<h3><a href="#" title="" class="overview-open">Overview</a> <a href="#" title="" class="overview-open"><i class="fa fa-pencil"></i></a></h3>
+											<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Quisque tempor aliquam felis, nec condimentum ipsum commodo id. Vivamus sit amet augue nec urna efficitur tincidunt. Vivamus consectetur aliquam lectus commodo viverra. Nunc eu augue nec arcu efficitur faucibus. Aliquam accumsan ac magna convallis bibendum. Quisque laoreet augue eget augue fermentum scelerisque. Vivamus dignissim mollis est dictum blandit. Nam porta auctor neque sed congue. Nullam rutrum eget ex at maximus. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec eget vestibulum lorem.</p>
+											<br>
+											<hr>
+											<button type="button" class="btn btn-primary">Edit</button>
+										
+										</div><!--user-profile-ov end-->
+										<div class="user-profile-ov st2">
+											<h3><a href="#" title="" class="esp-bx-open">Establish Since </a><a href="#" title="" class="esp-bx-open"><i class="fa fa-pencil"></i></a> <a href="#" title="" class="esp-bx-open"><i class="fa fa-plus-square"></i></a></h3>
+											<span>February 2004</span>
+										</div><!--user-profile-ov end-->
+										<div class="user-profile-ov">
+											<h3><a href="#" title="" class="emp-open">Total Employees</a> <a href="#" title="" class="emp-open"><i class="fa fa-pencil"></i></a> <a href="#" title="" class="emp-open"><i class="fa fa-plus-square"></i></a></h3>
+											<span>17,048</span>
+										</div><!--user-profile-ov end-->
+										<div class="user-profile-ov">
+											<h3><a href="#" title="" class="lct-box-open">Location</a> <a href="#" title="" class="lct-box-open"><i class="fa fa-pencil"></i></a> <a href="#" title="" class="lct-box-open"><i class="fa fa-plus-square"></i></a></h3>
+											<h4>USA</h4>
+											<p> Menlo Park, California, United States</p>
+										</div><!--user-profile-ov end-->
+									</div><!--product-feed-tab end-->
+
+									<div class="product-feed-tab" id="my-bids">
+										<div class="posts-section">
+											{% for p in context.p_bid %}
+											<div class="post-bar">
+												<div class="post_topbar">
+													<div class="usy-dt">
+														<img src="{{p.project_id.company_id.c_pic.url}}" height="50" width="50" alt="">
+														<div class="usy-name">
+															<h3>{{p.project_id.company_id.cname}}</h3>
+															<span><img src="{% static 'Company/images/clock.pn' %}"
+																alt="">{{p.project_id.whenpublished}}</span>
+														</div>
+													</div>
+													<div class="ed-opts">
+														<a href="#" title="" class="ed-opts-open"><i class="la la-ellipsis-v"></i></a>
+														<ul class="ed-options">
+															<li><a href="#" title="">Edit Post</a></li>
+															<li><a href="#" title="">Unsaved</a></li>
+															<li><a href="#" title="">Unbid</a></li>
+															<li><a href="#" title="">Close</a></li>
+															<li><a href="#" title="">Hide</a></li>
+														</ul>
+													</div>
+												</div>
+												<div class="epi-sec">
+													<ul class="descp">
+														<li><img src="{% static 'Company/images/icon9.png' %}"
+															alt=""><span>{{p.project_id.company_id.city}}</span></li>
+													</ul>
+													<ul class="bk-links">
+														<li><a href="#" title=""><i class="la la-bookmark"></i></a></li>
+														<li><a href="#" title=""><i class="la la-envelope"></i></a></li>
+														<li class='bid_now bid' data-pid="{{p.id}}"><a
+															style="color: inherit;text-decoration: none;"
+															id="mydata{{p.id}}">Applied</a>
+													</li>
+													</ul>
+												</div>
+												<div class="job_descp">
+													<h3>{{p.project_id.p_post}}</h3>
+													<ul class="job-dt">
+														<li><a href="#" title="">{{p.project_id.pduration}}</a></li>
+														<li><span> &#8377;{{p.project_id.salary_start}} - &#8377;{{p.project_id.salary_end}}</span></li>
+
+													</ul>
+													<p> {{p.project_id.pdesc}}</p>
+													<ul class="skill-tags">
+														<ul class="skill-tags">
+															{% for a in p.project_id.ViewTags %}
+															<li><a href="#" title="">{{a}}</a></li>
+															{% endfor %}
+														</ul> 	
+													</ul>
+												</div>
+												<div class="job-status-bar">
+													<ul class="like-com">
+														<li>
+															<a href="#"><i class="la la-heart"></i> Like</a>
+															<img src="images/liked-img.png" alt="">
+															<span>25</span>
+														</li> 
+														<li><a href="#" title="" class="com"><img src="images/com.png" alt=""> Comment 15</a></li>
+													</ul>
+												</div>
+											</div><!--post-bar end-->
+											 
+											<div class="process-comm">
+												<a href="#" title=""><img src="images/process-icon.png" alt=""></a>
+											</div><!--process-comm end-->
+										</div><!--posts-section end-->
+										{% endfor %}
+									</div><!--product-feed-tab end-->
+
+									<div class="product-feed-tab" id="portfolio-dd">
+										<div class="portfolio-gallery-sec">
+											<h3>Change Password</h3>
+											<div class="sign_in_sec current">
+												<form action="{% url 'change-pass' %}" method="POST">
+													{% csrf_token %}
+													<div class="row">
+														<div class="col-lg-12 no-pdd">
+															<div class="sn-field">
+																<input type="password" name="cpassword" placeholder="Current Password">
+																<i class="la la-lock"></i>
+															</div><!--sn-field end-->
+														</div>
+														<div class="col-lg-12 no-pdd">
+															<div class="sn-field">
+																<input type="password" name="npassword" placeholder="New Password">
+																<i class="la la-lock"></i>
+															</div>
+														</div>
+														<div class="col-lg-12 no-pdd">
+															<button type="submit" name="signin" value="submit">Change</button>
+														</div>
+													</div>
+												</form>
+											</div><!--gallery_pf end-->
+										</div><!--portfolio-gallery-sec end-->
+
+										<br>
+
+										<div class="portfolio-gallery-sec">
+											<h3>Update Profile Picture</h3>
+											<div class="sign_in_sec current">
+												<form action="{% url 'change-img' %}" method="POST" enctype="multipart/form-data">
+													{% csrf_token %}
+													<div class="row">
+														<div class="col-lg-12 no-pdd">
+															<div class="sn-field">
+																<input type="file" name="cprofle" >
+															</div><!--sn-field end-->
+														</div> 
+														<div class="col-lg-12 no-pdd">
+															<button type="submit" value="submit">Change</button>
+														</div>
+													</div>
+												</form>	
+											</div><!--gallery_pf end-->
+										</div><!--portfolio-gallery-sec end-->
+
+										
+									</div><!--product-feed-tab end-->
+								</div><!--main-ws-sec end-->
+							</div>
+						</div>
+					</div><!-- main-section-data end-->
+				</div> 
+			</div>
+		</main>
+
+	{% endblock %}
